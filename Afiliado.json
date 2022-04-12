@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Afiliado",
+    "version": "1.0.0",
+    "description": "Devuelve los datos del afiliado.",
+    "contact": {
+      "name": "Pablo Carballo",
+      "email": "pcarballo@thinksoft.com"
+    }
+  },
+  "paths": {
+    "/afiliado": {
+      "get": {
+        "tags": [
+          "consulta",
+          "afiliado",
+          "datos"
+        ],
+        "description": "Devuelve los datos del afiliado, buscando por una combinacion de tipo_doc / nro_doc o buscando unicamente por numero de carnet. Si se recibe tipo/nro doc y nro_carnet, se ejecuta la busqueda buscando por tipo/nro doc.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tipo_doc",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nro_doc",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nro_carnet",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Datos de afiliado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "apellidoAfiliado": {
+                      "type": "string",
+                      "example": "Alonso"
+                    },
+                    "nombreApellido": {
+                      "type": "string",
+                      "example": "Nicolas"
+                    },
+                    "tipoDocumento": {
+                      "type": "string",
+                      "example": "DNI"
+                    },
+                    "nroDocumento": {
+                      "type": "number",
+                      "example": 35580454
+                    },
+                    "sexo": {
+                      "type": "string",
+                      "example": "Masculino"
+                    },
+                    "estadoAfiliado": {
+                      "type": "string",
+                      "example": "Alta"
+                    },
+                    "estadoCivil": {
+                      "type": "string",
+                      "example": "Casado"
+                    },
+                    "fechaNacimiento": {
+                      "type": "string",
+                      "example": "13/03/1991"
+                    },
+                    "Nacionalidad": {
+                      "type": "string",
+                      "example": "Argentina"
+                    },
+                    "provincia": {
+                      "type": "string",
+                      "example": "Cordoba"
+                    },
+                    "localidad": {
+                      "type": "string",
+                      "example": "Cordoba"
+                    },
+                    "telefono": {
+                      "type": "number",
+                      "example": 3513580548
+                    },
+                    "eMail": {
+                      "type": "string",
+                      "example": "nalonso_91@gmail.com.ar"
+                    },
+                    "parentesco": {
+                      "type": "string",
+                      "example": "Titular"
+                    },
+                    "tipoAfiliacion": {
+                      "type": "string",
+                      "example": "DIRECTO"
+                    },
+                    "convenio": {
+                      "type": "string",
+                      "example": "GEA"
+                    },
+                    "planAsistencial": {
+                      "type": "string",
+                      "example": "GEA 3000"
+                    },
+                    "relacionAfiliado": {
+                      "type": "string",
+                      "example": "21 - 30 AÑOS"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No se encontro el afiliado, por tipo/nro de documento o por nro de carnet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "No existen datos de afiliados para los valores ingresados (DNI 35456464)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno en la base de datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Respuesta de error ORA - XXXX"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
